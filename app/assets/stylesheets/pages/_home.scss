@@ -1,1 +1,37 @@
 // Specific CSS for your home-page
+.btn {
+  height: 38px;
+    border-radius: 200px;
+    margin-top: 9px;
+    margin-left: 25px;
+    color: white;
+    background-color: grey;
+    border-color: grey;
+}
+
+
+
+.simple_form {
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid #9E9E9E;
+    width: 800px;
+    border-radius: 32px;
+    align-items: center;
+    align-content: center;
+    margin: 0 auto;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-control {
+  text-align: center;
+  margin-top: -8px;
+  border-radius: 21px;
+
+}
+
