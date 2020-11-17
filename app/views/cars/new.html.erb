@@ -1,0 +1,16 @@
+<h2>🏎 Add your car please 🏎</h2>
+
+<%= simple_form_for(@car) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :model,
+                required: true %>
+    <%= f.input :price,
+                required: true %>
+    <% f.input :availability, value: true %>
+    <% f.input :user, value: 1 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Add your car" %>
+  </div>
+<% end %>
