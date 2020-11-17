@@ -3,6 +3,7 @@
   height: 38px;
   border-radius: 200px;
   margin: 50px ;
+  margin-bottom: 10px;
   color: white;
   background-color: #dcdc00;
   border-color: grey;
@@ -14,7 +15,7 @@
 .simple_form {
   display: block;
   justify-content: space-evenly;
-  border: 2px solid #9E9E9E;
+  border: 1px solid #9E9E9E;
   border-radius: 32px;
   align-items: center;
   align-content: center;
@@ -46,11 +47,12 @@
 .card-category {
   background-size: cover;
   background-position: center;
-  height: 180px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
+  background-color: white;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -61,7 +63,7 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 10px;
 }
 
 // Smallest device

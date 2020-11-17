@@ -1,6 +1,17 @@
 <%= simple_form_for @car_preferences do |f| %>
-<%= f.input "location", class: 'input-form' %>
-<%= f.input "capacity", class: 'input-form' %>
+  <%= f.input "capacity",
+  class: 'input-form' %>
+
+  <%= f.input "location",
+  class: 'input-form' %>
+
+  <%#= f.input "start_date",
+  as: :date,
+  class: 'input-form' %>
+
+  <%#= f.input "end_date", 
+  as: :date,
+  class: 'input-form' %>
 
   <%= link_to "Find ⚡ Cars", cars_path, class: 'btn btn-warning mx-2'%>
 <% end %>
