@@ -1,5 +1,10 @@
-<h1>All my cars</h1>
+<h1>All our cars</h1>
 
 <% @cars.each do  |car| %>
-  <%= link_to car.model, car %></p>
+  <p><%= link_to car.model, car %> |
+  <%= car.capacity %> |
+  <%= car.price %> |
+  <%= car.id %> |
+  <%= car.location %> |
+  <%= User.find(car.user_id).username %></p>
 <% end %>
