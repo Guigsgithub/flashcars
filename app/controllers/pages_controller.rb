@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @car = Car.new
+    @car_preferences = Car.new
+    @rental_preferences = Rental.new
+    @rentals = Rental.all
   end
 end
