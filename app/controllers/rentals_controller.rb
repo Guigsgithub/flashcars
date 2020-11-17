@@ -14,7 +14,7 @@ class RentalsController < ApplicationController
     @rental.car = @car
     @rental.user = current_user
     if @rental.save
-      redirect_to rentals_path
+      redirect_to user_path(@rental.user)
     else
       render :new
     end
@@ -23,7 +23,7 @@ class RentalsController < ApplicationController
   def destroy
     @rental = Rental.find(params[:id])
     @rental.destroy
-    redirect_to rentals_path
+    redirect_to user_path(@rental.user)
   end
 
   private
