@@ -10,14 +10,20 @@ class RentalsController < ApplicationController
 
   def create
     @car = Car.find(params[:car_id])
-    @rental = Rental.new(params[:id])
-    @rental.car_id = @car
-    @rental.user_id = current_user
-    if @car.save
-      redirect_to rental_path(@rental)
+    @rental = Rental.new(rental_params)
+    @rental.car = @car
+    @rental.user = current_user
+    if @rental.save
+      redirect_to rentals_path
     else
       render :new
     end
+  end
+
+  def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
+    redirect_to rentals_path
   end
 
   private
