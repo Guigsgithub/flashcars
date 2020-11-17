@@ -1,10 +1,19 @@
-<h1>All our cars</h1>
 
-<% @cars.each do  |car| %>
-  <p><%= link_to car.model, car %> |
-  <%= car.capacity %> |
-  <%= car.price %> |
-  <%= car.id %> |
-  <%= car.location %> |
-  <%= User.find(car.user_id).username %></p>
-<% end %>
+
+<div class="container">
+  <h1>Pick your favorite green car !</h1>
+  <% @cars.each do  |car| %>
+    <div class="index-cards">
+        <div class="card d-flex flex-row m-2">
+          <%= cl_image_tag car.photo.key, height: 150, width: 200, crop: :fill, class: "align-self-center m-1", alt:"car-picture"%>
+            <div class="d-flex flex-column flex-grow-1 justify-content-center">
+              <p>Capacity : <%= car.capacity %> person(s)</p>
+              <p>Pice per day :<%= car.price %> €</p>
+              <p>Location :<%= car.location %></p>
+              <p>Rented by :<%= link_to User.find(car.user_id).username, user_path(User.find(car.user_id)) %></p>
+            </div>
+              <%= link_to "Rent this car !", car_path(car), class:"btn align-self-center justify-content-center m-1"%>
+        </div>
+    </div>
+  <% end %>
+</div>
