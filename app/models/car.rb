@@ -6,4 +6,5 @@ class Car < ApplicationRecord
   validates :price, presence: true
   validates :location, presence: true
   validates :capacity, presence: true
+  has_one_attached :photo
 end

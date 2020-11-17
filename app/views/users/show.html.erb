@@ -7,3 +7,6 @@
 <%= link_to "Add a car", new_car_path %>
 
 <H1>My cars</H1>
+<% @user.cars.each do |car|%>
+<%= car.model %>
+<% end %>
