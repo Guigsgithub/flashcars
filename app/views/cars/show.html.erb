@@ -5,3 +5,6 @@
             car_path(@car),
             method: :delete,
             data: { confirm: "Are you sure?" } %>
+<% if @car.photo.attached? %>
+<%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
