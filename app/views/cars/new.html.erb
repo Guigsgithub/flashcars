@@ -6,8 +6,10 @@
                 required: true %>
     <%= f.input :price,
                 required: true %>
-    <% f.input :availability, value: true %>
-    <% f.input :user, value: 1 %>
+    <%= f.input :location,
+                required: true %>
+    <%= f.input :capacity,
+                required: true %>            
   </div>
 
   <div class="form-actions">
