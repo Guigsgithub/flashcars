@@ -1,1 +1,7 @@
-<h1>Hello</h1>
+<% @rentals.each do |rental| %>
+<p>Username reservation: <%= rental.user.username %></p>
+<p>Start date: <%= rental.start_date %></p>
+<p>End date: <%= rental.end_date %></p>
+<p>Car model: <%= rental.car.model %>
+<%= link_to "🗑", rental_path(rental), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>

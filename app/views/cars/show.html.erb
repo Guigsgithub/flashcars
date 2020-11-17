@@ -1,2 +1,3 @@
 <h1>🚙 <%= @car[:model] %> 🚙</h1>
 <p>💸 Price : <%= @car[:price] %> 💸</p>
+<%= link_to "➕ Book this car", new_car_rental_path(@car) %>
