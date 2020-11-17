@@ -1,9 +1,46 @@
-<h1>my profile</h1>
+<div class="row d-grid justify-content-between mt-5 mb-5">
+  <div class="col bg-light pt-2 pb-2">
+    <h2>My profile</h2>
+    <p>Email: </br> <%= @user.email %></p>
+    <p>Username: </br> <%= @user.username %></p>
+  </div>
 
-<%= @user.email %>
-<%= @user.username %>
-<%= @user.id %>
+  <div class="col bg-light ml-2 pt-2 pb-2">
+    <h2>My cars</h2>
+    <div class="button-add">
+      <%= link_to "➕ Add a new car", new_car_path %>
+    </div>
+    <% @cars.each do |car| %>
+      <div class="grey-cards">
+        <p>Car model: </br> <%= car.model %></p>
+        <p>Car price: </br><%= car.price %>$/day</p>
+        <p>Car capacity:</br><%= car.capacity %> people</p>
+        <div class="button-destroy">
+          <%= link_to "🗑", car_path(car), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to "Add a car", new_car_path %>
-
-<H1>My cars</H1>
+  <% if @rentals.count != 0 %>
+    <div class="col bg-light ml-2 pt-2 pb-2">
+      <% counter = 0 %>
+      <h2>Reservation:</h2>
+      <% @rentals.each do |rental| %>
+        <div class="grey-cards">
+          <% counter += 1 %>
+          <p>Booking number: <%= counter %></p>
+          <p> Start date: </br> <%= rental.start_date %></p>
+          <p>End date: </br><%= rental.end_date %> </p>
+          <p>Car model: </br><%= rental.car.model %></p>
+          <div class="button-destroy">
+            <%= link_to "🗑", rental_path(rental), method: :delete, data: { confirm: "Are you sure?" } %>
+          </div>
+        </div>
+      <% end %>
+      <div class="button-add">
+        <%= link_to "➕ Book a car", root_path %>
+      </div>
+    </div>
+  <% end %>
+</div>
