@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       resources :rentals, only: [:new, :create]
     end
     resources :rentals, only: [:index, :show, :destroy]
+    resources :users
 end
