@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
     resources :rentals, only: [:index, :show, :destroy]
     resources :users
+  resources :car_preferences, only: [:index]
 end

@@ -1,10 +1,6 @@
 class CarsController < ApplicationController
   def index
-    if params[:capacity].present?
-      @cars = Car.where(capacity: params[:capacity])
-    else
-      @cars = Car.all
-    end
+    @cars = Car.where(capacity: params[:capacity], location: params[:location])
   end
 
   def show
