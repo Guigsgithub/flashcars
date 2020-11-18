@@ -1,10 +1,22 @@
-<h1>🚙 <%= @car[:model] %> 🚙</h1>
-<p>💸 Price : <%= @car[:price] %> 💸</p>
-<%= link_to "➕ Book this car", new_car_rental_path(@car) %>
-<%= link_to "Delete the Car",
-            car_path(@car),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-<% if @car.photo.attached? %>
-<%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
+<div class="container">
+  <h1 class="border-bottom border-secondary m-1 d-flex justify-content-center">🚙 rent a beautiful <%= @car[:model] %> ! 🚙</h1>
+  <div class="show-content d-flex">
+    <div class="show-image p-1">
+      <% if @car.photo.attached? %>
+        <%= cl_image_tag @car.photo.key, height: 250, width: 333, crop: :fill %>
+      <% else %>
+        <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="" style="height: 300px">
+      <% end %>
+    </div>
+    <div class="show-infos p-1 d-flex flex-column flex-grow-1 justify-content-center">
+      <h3>💸 <%= @car.price %>€ a day💸</h3>
+      <h4>🗺️ available in <%= @car.location %> 🗺️</h4>
+      <h4>👨‍👩‍👦‍👦 <%= @car.capacity %> seats 👨‍👩‍👦‍👦</h4>
+    </div>
+    <div class="show-actions d-flex flex-column flex-grow-1 justify-content-center text-align-center">
+      <p><%= link_to "➕ Book this car", new_car_rental_path(@car) %></p>
+      <p>Rented by :<%= link_to User.find(@car.user_id).username, user_path(User.find(@car.user_id)) %></p>
+      <p><%= mail_to User.find(@car.user_id).email, "Contact the owner" %></p>
+    </div>
+  </div>
+</div>
