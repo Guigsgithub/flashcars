@@ -5,7 +5,9 @@
   <% @cars.each do  |car| %>
     <div class="index-cards">
         <div class="card d-flex flex-row m-2">
+          <% if car.photo.attached? %>
           <%= cl_image_tag car.photo.key, height: 150, width: 200, crop: :fill, class: "align-self-center m-1", alt:"car-picture"%>
+          <% end %>
             <div class="d-flex flex-column flex-grow-1 justify-content-center">
               <p>Capacity : <%= car.capacity %> person(s)</p>
               <p>Pice per day :<%= car.price %> €</p>
