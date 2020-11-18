@@ -1,9 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
+  <div class="logo"> <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://www.haulotte-africa.com/sites/haulottecorp/files/fichiers/Produits/energy-electric.png" %>
     <% end %>
-    <h1>Flash⚡Cars</h1>
+  </div>
 
+  <div class="apptitle">
+    <h1>Flash⚡Cars</h1>
+  </div>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,11 +16,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
+        <li class="nav-item search active">
           <%= link_to cars_path do %>
-            <i class="fab fa-searchengin nav-link"> Find a car</i> 
+            <p><i class="fab fa-searchengin nav-link"></i> Find a car </p>
           <% end %>
         </li>
+
         <li class="nav-item dropdown">
           <%= image_tag "profile-user", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
