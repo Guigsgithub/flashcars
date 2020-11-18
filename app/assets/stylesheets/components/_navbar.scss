@@ -1,6 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #009FE2;
+  box-shadow: 0px 1px 16px rgba(49, 49, 49, 0.5);
+  border-radius: 0 0 5px 5px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -13,3 +15,40 @@
   border: solid 3px white;
 }
 
+.nav-link {
+  color: white;
+}
+
+i.fab.fa-searchengin.nav-link {
+  color: white;
+  font-size: 22px
+}
+
+i.fab.fa-searchengin.nav-link:hover {
+  color: yellow;
+}
+
+// .nav-item p {
+//   color: white;
+// }
+
+.search a {
+  text-decoration:none;
+  color: white;
+}
+
+.search a:hover {
+  color:yellow;
+}
+
+.nav-item {
+  margin-left:20px;
+}
+
+h1 {
+  color: white;
+}
+
+.apptitle{
+  text-align: center;
+}
