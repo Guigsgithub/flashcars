@@ -20,7 +20,6 @@
     align-content: center;
     margin: 10px;
     padding: 10px;
-    margin-left: 120px;
 }
 
 .form-group {
@@ -72,7 +71,8 @@
 .message-container {
     display: flex;
     align-items: center;
-    margin-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
     margin-bottom: 43px;
     font-family: 'Roboto', sans-serif;
