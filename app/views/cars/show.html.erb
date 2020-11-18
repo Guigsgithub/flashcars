@@ -1,22 +1,37 @@
-<div class="container">
-  <h1 class="border-bottom border-secondary m-1 d-flex justify-content-center">🚙 rent a beautiful <%= @car[:model] %> ! 🚙</h1>
-  <div class="show-content d-flex">
-    <div class="show-image p-1">
+<div class="container h-100" style="background-color:#EAEAEA">
+  <h1 class="text-dark d-flex justify-content-center">🚙 rent a beautiful <%= @car[:model] %> ! 🚙</h1>
+    <div class="picture-and-comment d-flex p-2 bg-white">
       <% if @car.photo.attached? %>
-        <%= cl_image_tag @car.photo.key, height: 250, width: 333, crop: :fill %>
+        <%= cl_image_tag @car.photo.key, crop: :fill, class:"show-img"%>
       <% else %>
-        <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="" style="height: 300px">
+        <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="show-img">
       <% end %>
+      <div class="comment">
+        <h3 class="d-flex justify-content-center">The owner's word</h3>
+        <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ducimus molestiae maiores quod optio </h5>
+        <%= link_to "➕ Book this car", new_car_rental_path(@car), class:"btn btn-primary"%>
+      </div>
     </div>
-    <div class="show-infos p-1 d-flex flex-column flex-grow-1 justify-content-center">
-      <h3>💸 <%= @car.price %>€ a day💸</h3>
-      <h4>🗺️ available in <%= @car.location %> 🗺️</h4>
-      <h4>👨‍👩‍👦‍👦 <%= @car.capacity %> seats 👨‍👩‍👦‍👦</h4>
+    <div class="car-and-owner-details d-flex justify-content-around">
+      <div class="car-details bg-white p-2 mt-2">
+        <h3>What you get :</h3>
+        <h5>💸 <%= @car.price %>€ a day💸</h5>
+        <h6>🗺️ available in <%= @car.location %> 🗺️</h6>
+        <h6>👨‍👩‍👦‍👦 <%= @car.capacity %> seats 👨‍👩‍👦‍👦</h6>
+      </div>
+      <div class="owner-details bg-white p-2 mt-2">
+        <h3>Who you get it from :</h3>
+          <div class="owner-pic-and-details d-flex">
+            <img src="https://randomuser.me/api/portraits/men/0.jpg" alt="" class="avatar align-middle">
+            <div class="user-details">
+              <p class="p-2"><%= link_to User.find(@car.user_id).username, user_path(User.find(@car.user_id)) %></p>
+              <p class="p-2"><%= mail_to User.find(@car.user_id).email, "Contact the owner" %></p>
+            </div>
+          </div>
+      </div>
     </div>
-    <div class="show-actions d-flex flex-column flex-grow-1 justify-content-center text-align-center">
-      <p><%= link_to "➕ Book this car", new_car_rental_path(@car) %></p>
-      <p>Rented by :<%= link_to User.find(@car.user_id).username, user_path(User.find(@car.user_id)) %></p>
-      <p><%= mail_to User.find(@car.user_id).email, "Contact the owner" %></p>
+    <div class="map-and-form d-flex justify-content-around mt-2 mb-2">
+      <div class="map"><p>Placeholder map</p></div>
+      <div class="form"><p>Placeholder form</p></div>
     </div>
-  </div>
 </div>
