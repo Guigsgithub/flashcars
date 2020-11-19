@@ -14,16 +14,20 @@ class RentalsController < ApplicationController
     @rental.car = @car
     @rental.user = current_user
     if @rental.save
+      flash[:notice] = "Your booking is done"
       redirect_to user_path(@rental.user)
     else
+      flash[:alert] = "Your booking has failed"
       render :new
     end
   end
 
   def destroy
     @rental = Rental.find(params[:id])
-    @rental.destroy
-    redirect_to user_path(@rental.user)
+    if @rental.destroy
+      flash[:alert] = "Your booking have been deleted"
+      redirect_to user_path(@rental.user)
+    end
   end
 
   private

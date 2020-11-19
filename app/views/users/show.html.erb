@@ -17,7 +17,8 @@
           <p>Car price: </br><%= car.price %>$/day</p>
           <p>Car capacity:</br><%= car.capacity %> people</p>
           <div class="button-destroy">
-            <%= link_to "🗑", car_path(car), method: :delete, data: { confirm: "Are you sure?" } %>
+            <button id="sweet-alert-demo">🗑</button>
+            <%= link_to "", car_path(car), method: :delete, id: "delete-link", class: "hidden" %>
           </div>
         </div>
       <% end %>
@@ -34,7 +35,8 @@
             <p>End date: </br><%= rental.end_date %> </p>
             <p>Car model: </br><%= rental.car.model %></p>
             <div class="button-destroy">
-              <%= link_to "🗑", rental_path(rental), method: :delete, data: { confirm: "Are you sure?" } %>
+              <button id="sweet-alert-demo2">🗑</button>
+              <%= link_to "", rental_path(rental), method: :delete, id: "delete-link2", class: "hidden"%>
             </div>
           </div>
         <% end %>

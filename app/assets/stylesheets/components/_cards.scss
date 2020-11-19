@@ -32,7 +32,7 @@
 
 .grey-cards {
   position: relative;
-  background-color: #edeaea;
+  background-color: #EFEFEF;
   border-radius: 2px;
   padding: 10px;
   margin-bottom: 5px;
@@ -42,6 +42,13 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  border: none;
+  button {
+    border-color: none;
+    border-width: 0;
+    border-style: none;
+    background-color: none;
+  }
   a {
     text-decoration: none;
   }

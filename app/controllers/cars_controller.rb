@@ -9,6 +9,14 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find(params[:id])
+    @rental = Rental.new
+    @rentals = Rental.where(car_id: @car.id)
+    @rentals_dates = @rentals.map do |rental|
+      {
+        from: rental.start_date,
+        to: rental.end_date
+      }
+    end
   end
 
   def new
@@ -19,8 +27,10 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
+      flash[:notice] = "Your car have been created"
       redirect_to @car
     else
+      flash[:alert] = "Add a new car failed"
       render :new
     end
   end
@@ -28,7 +38,8 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    redirect_to cars_path
+    flash[:alert] = "Your car have been deleted"
+    redirect_to user_path(@car.user)
   end
 
   private
