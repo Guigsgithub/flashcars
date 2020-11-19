@@ -1,11 +1,14 @@
 <div class="footer">
   <div class="footer-column text-align-center">
     <h6 class="footer-titles">Flash⚡Cars</h6>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil error.</p>
+    <p>Electrify your days.<br/>
+    Choose Flash Cars.</p>
   </div>
   <div class="footer-column">
     <h6 class="footer-titles">Useful links</h6>
+    <% if current_user %> 
     <p><%= link_to "My profile", user_path(current_user) %></p>
+    <% end %>
     <p><a href="https://testimonial-generator.com/">They talk about us</a></p>
     <p><%= link_to "All our cars", cars_path %></p>
   </div>
