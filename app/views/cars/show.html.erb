@@ -38,7 +38,12 @@
           <% @car.reviews.each do |review| %>
             <li class="list-group-item">
               Rating : <%= "⚡︎" * review.rating %> <br/>
-              <%= review.content %></li>
+              <%= review.content %> <br/>
+              <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+            </li>       
            <% end %>
         </ul>
       </div>
