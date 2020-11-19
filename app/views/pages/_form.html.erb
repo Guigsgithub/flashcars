@@ -1,8 +1,8 @@
-<%= simple_form_for @car_preferences do |f| %>
-  <%= f.input "capacity",
+<%#= simple_form_for @car_preferences do |f| %>
+  <%#= f.input "capacity",
   class: 'input-form' %>
 
-  <%= f.input "location",
+  <%#= f.input "location",
   class: 'input-form' %>
 
   <%#= f.input "start_date",
@@ -13,5 +13,32 @@
   as: :date,
   class: 'input-form' %>
 
-  <%= link_to "Find ⚡ Cars", cars_path, class: 'btn btn-warning mx-2'%>
+  <%#= link_to "Find ⚡ Cars", cars_path, class: 'btn btn-warning mx-2'%>
+<%# end %>
+
+
+<%= form_tag cars_path, class: "form-tag", method: :get do %>
+  <%= text_field_tag :query_capacity,
+    params[:query_capacity],
+    class: "form-control",
+    placeholder: "Capacity"
+  %>
+  <%= text_field_tag :query_location,
+    params[:query_location],
+    class: "form-control",
+    placeholder: "City"
+  %>
+   <%= date_field_tag :query_start_date,
+    params[:query_start_date],
+    class: "form-control",
+    placeholder: "from"
+  %>
+   <%= date_field_tag :query_end_date,
+    params[:query_end_date],
+    class: "form-control",
+    placeholder: "to"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
+
+ <%#= f.input :publish_at, :as => :date_select, :labels => { :year => "Year", :month => "Month", :day => "Day" }  %>
