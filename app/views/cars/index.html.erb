@@ -4,11 +4,11 @@
       <div class="index-cards">
         <% @cars.each do  |car| %>
             <div class="index-card">
-              <% if car.photo.attached? %>
-                <%= cl_image_tag car.photo.key, crop: :fill, alt:"car-picture", class:"index-img"%>
-              <% else %>
-                <img class="index-img" src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="car-picture">
-              <% end %>
+                <% if car.photo.attached? %>
+                  <%= cl_image_tag car.photo.key, crop: :fill, class:"index-img"%>
+                <% else %>
+                  <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="index-img">
+                <% end %>
                 <div>
                   <h4 class="pt-2">💸 <%= car.price %> €/day</h4>
                   <h5>👨‍👩‍👦‍👦 <%= car.capacity %> person(s)</h5>

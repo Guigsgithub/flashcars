@@ -2,5 +2,8 @@
 <p><%= car.price %> €/day</p>
 
 
-
-<%= cl_image_tag car.photo.key, crop: :fill, alt:"car-picture", class:"map-img"%>
+<% if car.photo.attached? %>
+  <%= cl_image_tag car.photo.key, crop: :fill, class:"show-img"%>
+<% else %>
+  <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="show-img">
+<% end %>
