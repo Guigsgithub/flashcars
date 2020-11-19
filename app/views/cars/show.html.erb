@@ -34,6 +34,13 @@
       <div class="map">
         <p>Placeholder map</p>
         <%= link_to 'Leave a review', new_car_review_path(@car) %>
+        <ul class="list-group">
+          <% @car.reviews.each do |review| %>
+            <li class="list-group-item">
+              Rating : <%= "⚡︎" * review.rating %> <br/>
+              <%= review.content %></li>
+           <% end %>
+        </ul>
       </div>
       <div class="form"><p>Placeholder form</p></div>
     </div>
