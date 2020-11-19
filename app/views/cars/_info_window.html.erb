@@ -1,0 +1,6 @@
+<h6><%= link_to car.model, car_path(car) %></h6>
+<p><%= car.price %> €/day</p>
+
+
+
+<%= cl_image_tag car.photo.key, crop: :fill, alt:"car-picture", class:"map-img"%>
