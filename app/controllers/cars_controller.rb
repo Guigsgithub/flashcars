@@ -1,9 +1,31 @@
 class CarsController < ApplicationController
   def index
-    if params[:capacity].present?
-      @cars = Car.where(capacity: params[:capacity])
-    else
-      @cars = Car.all
+    @rentals = Rental.all
+    start_date = params[:query_start_date]
+    end_date = params[:query_end_date]
+    @rentals = @rentals.select do |rental|
+      start_date > rental.end_date.strftime('%Y-%m-%d') || end_date < rental.start_date.strftime('%Y-%m-%d')
+    end
+    @cars = @rentals.map { |rental| Car.find(rental.car_id) }
+    @cars = @cars.uniq
+    @cars = @cars.select do |car|
+      car.capacity >= params[:query_capacity].to_i && car.location == params[:query_location]
+    end
+
+    @markers = @cars.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
+
+    @markers = @cars.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+        image_url: helpers.asset_path('FLASHCAR_COULEUR.png')
+      }
     end
   end
 
@@ -45,6 +67,7 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:user, :model, :price, :location, :capacity, :photo)
+    params.require(:car).permit(:user, :model, :price, :location, :capacity, :photo, :description)
   end
 end
+

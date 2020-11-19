@@ -8,7 +8,7 @@
       <% end %>
       <div class="comment">
         <h3 class="d-flex justify-content-center">The owner's word</h3>
-        <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ducimus molestiae maiores quod optio </h5>
+        <h5> <%= @car.description %> </h5>
         <%= link_to "➕ Book this car", new_car_rental_path(@car), class:"btn btn-primary"%>
       </div>
     </div>
@@ -40,5 +40,22 @@
           <%= f.submit "Rent this car", class: 'btn btn-primary' %>
         <% end %>
       </div>
+      <div class="map">
+        <p>Placeholder map</p>
+        <%= link_to 'Leave a review', new_car_review_path(@car) %>
+        <ul class="list-group">
+          <% @car.reviews.each do |review| %>
+            <li class="list-group-item">
+              Rating : <%= "⚡︎" * review.rating %> <br/>
+              <%= review.content %> <br/>
+              <%= link_to "Remove",
+                  review_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+            </li>       
+           <% end %>
+        </ul>
+      </div>
+      <div class="form"><p>Placeholder form</p></div>
     </div>
 </div>
