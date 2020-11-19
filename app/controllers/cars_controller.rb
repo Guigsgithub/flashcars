@@ -12,13 +12,6 @@ class CarsController < ApplicationController
       car.capacity >= params[:query_capacity].to_i && car.location == params[:query_location]
     end
 
-    @markers = @cars.geocoded.map do |car|
-      {
-        lat: car.latitude,
-        lng: car.longitude
-      }
-    end
-
     @markers = @cars.map do |car|
       {
         lat: car.latitude,
