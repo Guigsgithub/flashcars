@@ -1,4 +1,4 @@
-<h2>🏎 Add your car please 🏎</h2>
+<h2>🏎 Edit your car please 🏎</h2>
 
 <%= simple_form_for(@car) do |f| %>
   <div class="form-inputs">
@@ -16,7 +16,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Add your car" %>
+    <%= f.button :submit, "Update your car" %>
   </div>
   <%= link_to "Back", user_path(current_user) %>
 <% end %>
