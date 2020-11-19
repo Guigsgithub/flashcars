@@ -1,4 +1,5 @@
 import flatpickr from "flatpickr" // Note this is important!
+import "flatpickr/dist/flatpickr.min.css"
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin"
 
 const initFlatpicker = () => {
