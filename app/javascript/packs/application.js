@@ -36,6 +36,8 @@ import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initMapbox();
+
   initSweetalert('#sweet-alert-demo', {
   title: "Are you sure?",
   text: "This action will delete all bookings",
@@ -58,9 +60,5 @@ document.addEventListener('turbolinks:load', () => {
     const link = document.querySelector('#delete-link2');
     link.click();
   }
-
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  initMapbox();
-});
+})
 });
