@@ -2,6 +2,8 @@ import flatpickr from "flatpickr"
 import "flatpickr/dist/flatpickr.min.css" // Note this is important!
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin"
 
+const initFlatpicker = () => {
+ 
  const rentalForm = document.getElementById('rental-form-div');
 
  if (rentalForm) {
@@ -14,3 +16,6 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin"
     "disable": rentals,
   })
 }
+}
+
+export { initFlatpicker };

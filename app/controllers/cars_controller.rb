@@ -1,15 +1,22 @@
 class CarsController < ApplicationController
   def index
     @rentals = Rental.all
-    start_date = params[:query_start_date]
-    end_date = params[:query_end_date]
-    @rentals = @rentals.select do |rental|
-      start_date > rental.end_date.strftime('%Y-%m-%d') || end_date < rental.start_date.strftime('%Y-%m-%d')
-    end
-    @cars = @rentals.map { |rental| Car.find(rental.car_id) }
-    @cars = @cars.uniq
-    @cars = @cars.select do |car|
-      car.capacity >= params[:query_capacity].to_i && car.location == params[:query_location]
+
+    if params[:query_capacity] != "" && params[:query_capacity] || params[:query_location] != "" && params[:query_location] || params[:query_start_date] != "" && params[:query_start_date] || params[:query_end_date] != "" && params[:query_end_date]
+      start_date = params[:query_start_date]
+      end_date = params[:query_end_date]
+      @rentals = @rentals.select do |rental|
+        start_date > rental.end_date.strftime('%Y-%m-%d') || end_date < rental.start_date.strftime('%Y-%m-%d')
+      end
+
+      @cars = @rentals.map { |rental| Car.find(rental.car_id) }
+      @cars = @cars.uniq
+      @cars = @cars.select do |car|
+        car.capacity >= params[:query_capacity].to_i && car.location == params[:query_location]
+      end
+      @cars = Car.all if @cars.empty?
+    else
+      @cars = Car.all
     end
 
     @markers = @cars.map do |car|
@@ -20,6 +27,7 @@ class CarsController < ApplicationController
         image_url: helpers.asset_path('FLASHCAR_COULEUR.png')
       }
     end
+    p @markers
   end
 
   def show
