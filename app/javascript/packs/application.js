@@ -27,9 +27,39 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import "../plugins/flatpickr"
+
+import { initSweetalert } from '../plugins/init_sweetalert';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your functions here, e.g:
+  // initSelect2();
+  initSweetalert('#sweet-alert-demo', {
+  title: "Are you sure?",
+  text: "This action will delete all bookings",
+  icon: "warning"
+}, (value) => {
+  console.log(value);
+  if (value) {
+    const link = document.querySelector('#delete-link');
+    link.click();
+  }
+});
+
+  initSweetalert('#sweet-alert-demo2', {
+  title: "Are you sure?",
+  text: "This action cannot be reversed",
+  icon: "warning"
+}, (value) => {
+  console.log(value);
+  if (value) {
+    const link = document.querySelector('#delete-link2');
+    link.click();
+  }
 import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initMapbox();
 });
+})

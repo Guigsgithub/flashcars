@@ -1,4 +1,4 @@
-<div class="container h-100" style="background-color:#EAEAEA">
+<div class="container" style="background-color:#EAEAEA">
   <h1 class="text-dark d-flex justify-content-center">🚙 rent a beautiful <%= @car[:model] %> ! 🚙</h1>
     <div class="picture-and-comment d-flex p-2 bg-white">
       <% if @car.photo.attached? %>
@@ -31,6 +31,15 @@
       </div>
     </div>
     <div class="map-and-form d-flex justify-content-around mt-2 mb-2">
+      <div class="map"><p>Placeholder map</p></div>
+
+      <div class="form" id="rental-form-div" data-rentals="<%= @rentals_dates.to_json %>">
+        <%= simple_form_for [@car, @rental] do |f| %>
+          <%= f.input :start_date, label: "Sélectionnez vos dates:", as: :string, required: false, input_html: { id: "range_start", class: "d-none"} %>
+          <%= f.input :end_date, label: false, as: :string, required: false, input_html: { id: "range_end", class: "d-none" } %>
+          <%= f.submit "Rent this car", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
       <div class="map">
         <p>Placeholder map</p>
         <%= link_to 'Leave a review', new_car_review_path(@car) %>
