@@ -52,3 +52,33 @@
   margin-right: 0;
 }
 
+.index-card {
+  margin: 12px;
+  background-color: white;
+  padding: 12px;
+  width: fit-content;
+  border-radius: 10px;
+
+  p {
+    margin: 2px;
+  }
+
+}
+
+.index-img {
+  height: 150px;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.index-cards {
+  display: flex;
+  grid-gap: 10px;
+  margin: 20px;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
