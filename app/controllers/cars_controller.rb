@@ -5,6 +5,22 @@ class CarsController < ApplicationController
     else
       @cars = Car.all
     end
+
+    @markers = @cars.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
+
+    @markers = @cars.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+        image_url: helpers.asset_path('FLASHCAR_COULEUR.png')
+      }
+    end
   end
 
   def show
