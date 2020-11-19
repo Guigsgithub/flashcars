@@ -1,0 +1,8 @@
+<div class="container">
+  <%= simple_form_for [ @car, @review ] do |f| %>
+    <%= f.input :rating, collection: Review::RATINGS, prompt: "Select one" %>
+    <%= f.input :content %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Back", car_path(@car) %>
+</div>
