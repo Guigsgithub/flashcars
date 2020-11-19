@@ -31,7 +31,6 @@
       </div>
     </div>
     <div class="map-and-form d-flex justify-content-around mt-2 mb-2">
-      <div class="map"><p>Placeholder map</p></div>
 
       <div class="form" id="rental-form-div" data-rentals="<%= @rentals_dates.to_json %>">
         <%= simple_form_for [@car, @rental] do |f| %>
@@ -56,6 +55,5 @@
            <% end %>
         </ul>
       </div>
-      <div class="form"><p>Placeholder form</p></div>
     </div>
 </div>
