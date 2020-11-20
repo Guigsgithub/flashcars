@@ -42,14 +42,22 @@
         <%#= link_to "➕ Book a car", root_path, class: "user show btn btn-outline-primary" %>
         <p><% @rentals.each do |rental| %></p>
           <div class="user-reservation-cards">
+            <% if rental.car.photo.attached? %>
+                <%= cl_image_tag rental.car.photo.key, crop: :fill, class:"index-img"%>
+              <% else %>
+                <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="index-img">
+            <% end %>
             <% counter += 1 %>
-            <p>Booking number: <%= counter %></p>
-            <p> Start date: <%= rental.start_date.strftime('%Y-%m-%d') %></p>
-            <p>End date: <%= rental.end_date.strftime('%Y-%m-%d') %> </p>
-            <p>Car model: <%= rental.car.model %></p>
-            <div class="button-destroy">
-              <button id="sweet-alert-demo2">🗑</button>
-              <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>
+            <div class="user-reservation-cards-info">
+              <p>Booking number: <%= counter %></p>
+              <p>Start date: <%= rental.start_date.strftime('%Y-%m-%d') %></p>
+              <p>End date: <%= rental.end_date.strftime('%Y-%m-%d') %> </p>
+              <p>Car model: <%= rental.car.model %></p>
+              <p>Rental price: <%= (rental.car.price * (rental.end_date - rental.start_date)/86400).to_i %> €</p>
+              <div class="button-destroy">
+                <button id="sweet-alert-demo2">🗑</button>
+                <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>
+              </div>
             </div>
           </div>
         <% end %>
