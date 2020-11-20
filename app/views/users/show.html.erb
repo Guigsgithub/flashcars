@@ -12,7 +12,7 @@
           <li>  <%= link_to car.model, car_path(car) %> - 
             <%= car.price %>$/day - 
             <%= link_to "🖊", edit_car_path(car)%> -
-            <%= link_to "🗑", user_path(current_user), method: :delete, id: "delete-link sweet-alert-demo" %>
+            <%= link_to "🗑", car_path(car), method: :delete, id: "delete-link sweet-alert-demo" %>
           </li>
         <% end %>
       </ul>
@@ -30,7 +30,7 @@
             <p>Rental price: <%= (rental.car.price * (rental.end_date - rental.start_date)/86400).to_i %> €</p>
             <div class="button-destroy">
               <button id="sweet-alert-demo">🗑</button>
-              <%= link_to "", user_path(current_user), method: :delete, id: "delete-link", class: "hidden" %>
+              <%= link_to "", rental_path(rental), method: :delete, id: "delete-link", class: "hidden" %>
             </div>
           </div>
         <% end %>
@@ -57,7 +57,7 @@
               <p>Booking number: <%= counter %></p>
               <div class="button-destroy">
                 <button id="sweet-alert-demo2">🗑</button>
-                <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>
+                <%= link_to "", rental_path(rental), method: :delete, id: "delete-link2", class: "hidden"%>
               </div>
             </div>
           </div>
