@@ -9,7 +9,7 @@
     <div class="col bg-light ml-2 pt-2 pb-2">
       <h2>My cars</h2>
       <div class="button-add">
-        <%= link_to "➕ Add a new car", new_car_path %>
+        <p><%= link_to "➕ Add a new car", new_car_path %></p>
       </div>
       <% @cars.each do |car| %>
         <div class="grey-cards">
@@ -30,7 +30,7 @@
       <div class="col bg-light ml-2 pt-2 pb-2">
         <% counter = 0 %>
         <h2>Reservation:</h2>
-        <% @rentals.each do |rental| %>
+        <p><% @rentals.each do |rental| %></p>
           <div class="grey-cards">
             <% counter += 1 %>
             <p>Booking number: <%= counter %></p>
