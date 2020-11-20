@@ -40,17 +40,13 @@
         <% end %>
       </div>
       <div class="map">
-        <p>Placeholder map</p>
         <%= link_to 'Leave a review', new_car_review_path(@car) %>
         <ul class="list-group">
           <% @car.reviews.each do |review| %>
             <li class="list-group-item">
               Rating : <%= "⚡︎" * review.rating %> <br/>
               <%= review.content %> <br/>
-              <%= link_to "Remove",
-                  review_path(review),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
+              <%= link_to "Remove", review_path(review), method: :delete, data: { confirm: "Are you sure?" } %>
             </li>       
            <% end %>
         </ul>

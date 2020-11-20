@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2020_11_19_102814) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "location"
     t.integer "capacity"
+    t.text "description"
     t.float "latitude"
     t.float "longitude"
-    t.text "description"
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
