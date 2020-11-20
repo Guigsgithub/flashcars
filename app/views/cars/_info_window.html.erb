@@ -1,9 +1,9 @@
-<h6><%= link_to car.model, car_path(car) %></h6>
-<p><%= car.price %> €/day</p>
+<h6><%= link_to car[0].model, car_path(car) %></h6>
+<p><%= car[0].price %> €/day</p>
 
 
-<% if car.photo.attached? %>
-  <%= cl_image_tag car.photo.key, crop: :fill, class:"map-img"%>
+<% if car[0].photo.attached? %>
+  <%= cl_image_tag car[0].photo.key, crop: :fill, class:"map-img"%>
 <% else %>
   <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="map-img">
 <% end %>
