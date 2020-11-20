@@ -7,7 +7,7 @@ class CarsController < ApplicationController
       @cars = @cars.select do |car|
         car.capacity.to_i >= params[:query_capacity].to_i && car.location.downcase == params[:query_location].downcase
       end
-      if @cars.nil? == false
+      if @cars != []
         @rentals = @rentals.select do |rental|
           rental.car.capacity.to_i >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
         end
@@ -33,21 +33,18 @@ class CarsController < ApplicationController
           end
           @cars = @availabilities.uniq
           @cars = @cars.map { |car| [Car.find(car[0]), car[1]] }
-          @cars = @cars.select {|car| car[1] != 1}
+          @cars = @cars.select { |car| car[1] != 1 }
         else
           @cars = Car.all
           @cars = @cars.map { |car| [car, ""] }
         end
-        if @cars == []
-          @cars = Car.all
-          @cars = @cars.map { |car| [car, "No available cars"] }
-        end
       else
         @cars = Car.all
-        @cars = @cars.map { |car| [car, ""] }
+        @cars = @cars.map { |car| [car, "No available cars"] }
       end
     else
-      @cars = [["", "No cars"]]
+      @cars = Car.all
+      @cars = @cars.map { |car| [car, ""] }
     end
 
     @markers = @cars.map do |car|
