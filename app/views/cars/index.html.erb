@@ -14,6 +14,11 @@
                 <h4 cless="d-flex justify-content-center pt-1 pb-1">💸 <strong><%= car[0].price %> €/day</strong></h4>
                 <h5 class="pt-2">👨‍👩‍👦‍👦 <%= car[0].capacity %> person(s)</h5>
                 <h6 class="car-location">🗺️ <%= car[0].location %></h6>
+              <div>
+                <%= "Warning : Some dates are not available" if car[1] == 0 %>
+                <h4>💸 <%= car[0].price %> €/day</h4>
+                <h5>👨‍👩‍👦‍👦 <%= car[0].capacity %> person(s)</h5>
+                <h6>🗺️ <%= car[0].location %></h6>
                 <h6>👤 <%= link_to User.find(car[0].user_id).username, user_path(User.find(car[0].user_id)) %></h6>
               </div>
             <%= link_to "Rent !", car_path(car[0]), class:"btn btn-primary" %>

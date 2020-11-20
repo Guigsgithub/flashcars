@@ -1,29 +1,37 @@
 class CarsController < ApplicationController
   def index
+    @cars = Car.all
     @rentals = Rental.all
     @availabilities = []
-
     if params[:query_capacity] != "" && params[:query_capacity] || params[:query_location] != "" && params[:query_location] || params[:query_start_date] != "" && params[:query_start_date] || params[:query_end_date] != "" && params[:query_end_date]
+      @cars = @cars.select do |car|
+        car.capacity.to_i >= params[:query_capacity].to_i && car.location.downcase == params[:query_location].downcase
+      end
+      @rentals = @rentals.select do |rental|
+        rental.car.capacity.to_i >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
+      end
       start_date = params[:query_start_date]
       end_date = params[:query_end_date]
       @rentals = @rentals.each do |rental|
         r_start_date = rental.start_date.strftime('%Y-%m-%d')
         r_end_date = rental.end_date.strftime('%Y-%m-%d')
         if start_date > r_start_date
-          @availabilities.push([rental.car_id, "Warning : Some dates are not available"]) if end_date > r_end_date
+          if end_date > r_end_date
+            @availabilities.push([rental.car_id, 0])
+          else
+            @availabilities.push([rental.car_id, 1])
+          end
         else
           if end_date < r_end_date
-            @availabilities.push([rental.car_id, ""])
+            @availabilities.push([rental.car_id, -1])
           else
-            @availabilities.push([rental.car_id, "Warning : Some dates are not available"])
+            @availabilities.push([rental.car_id, 0 ])
           end
         end
       end
       @cars = @availabilities.uniq
       @cars = @cars.map { |car| [Car.find(car[0]), car[1]] }
-      @cars = @cars.select do |car|
-        car[0].capacity >= params[:query_capacity].to_i && car[0].location.downcase == params[:query_location].downcase
-      end
+      @cars = @cars.select {|car| car[1] != 1}
       if @cars == [[]]
         @cars = Car.all
         @cars = @cars.map { |car| [car, ""] }
@@ -70,18 +78,6 @@ class CarsController < ApplicationController
       flash[:alert] = "Add a new car failed"
       render :new
     end
-  end
-
-  def edit
-    @car = Car.find(params[:id])
-  end
-
-  def update
-    @car = Car.find(params[:id])
-    @car.update(car_params)
-
-    # no need for app/views/restaurants/update.html.erb
-    redirect_to car_path(@car)
   end
 
   def destroy
