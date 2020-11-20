@@ -49,11 +49,12 @@
             <% end %>
             <% counter += 1 %>
             <div class="user-reservation-cards-info">
-              <p>Booking number: <%= counter %></p>
+              
+              <h4><%= rental.car.model %></h4>
+              <h4><%= (rental.car.price * (rental.end_date - rental.start_date)/86400).to_i %> €</h4>
               <p>Start date: <%= rental.start_date.strftime('%Y-%m-%d') %></p>
               <p>End date: <%= rental.end_date.strftime('%Y-%m-%d') %> </p>
-              <p>Car model: <%= rental.car.model %></p>
-              <p>Rental price: <%= (rental.car.price * (rental.end_date - rental.start_date)/86400).to_i %> €</p>
+              <p>Booking number: <%= counter %></p>
               <div class="button-destroy">
                 <button id="sweet-alert-demo2">🗑</button>
                 <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>

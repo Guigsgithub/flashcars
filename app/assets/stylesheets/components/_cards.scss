@@ -47,8 +47,35 @@
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.user-reservation-cards > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.user-reservation-cards h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.user-reservation-cards p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.user-reservation-cards .user-reservation-cards-info {
+  padding: 16px;
+  display: block;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
 
 .button-destroy {
   position: absolute;
