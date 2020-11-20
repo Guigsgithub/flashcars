@@ -39,7 +39,7 @@ class CarsController < ApplicationController
       end
       if @cars == []
         @cars = Car.all
-        @cars = @cars.map { |car| [car, "No available cars"] }
+        @cars = @cars.map { |car| [car, ""] }
       end
     else
       @cars = Car.all
