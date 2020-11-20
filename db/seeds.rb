@@ -17,7 +17,7 @@ puts "Creating cars"
     price: rand(20..99),
     capacity: rand(1..8),
     description: Faker::Vehicle.car_options.join(","),
-    location: "#{rand(1..99)} #{["rue de la paix", "12 Avenue de la république", "Rue de l'Église", "Rue de la Gare", "Rue Pasteur", "Rue Jean Jaures"].sample} #{%w[Paris lyon Bordeaux Marseille Lille Nantes Toulouse Grenoble].sample}",
+    location: "#{%w[Paris lyon Bordeaux Marseille Lille Nantes Toulouse Grenoble].sample}",
     user_id: User.all.ids.sample.to_i
     )
   car.save!
