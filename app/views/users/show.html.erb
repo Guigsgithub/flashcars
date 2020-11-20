@@ -1,51 +1,59 @@
 <div class="container">
   <div class="row d-grid justify-content-between mt-5 mb-5">
     <div class="col bg-light pt-2 pb-2">
-      <h2>My profile</h2>
-      <p>Email: </br> <%= @user.email %></p>
-      <p>Username: </br> <%= @user.username %></p>
+        <h2>My profile</h2>
+        <p>Email: <br> <%= @user.email %></p>
+        <p>Username: <br> <%= @user.username %></p>
+
+        <h2>My cars</h2><br>
+          <p><%= link_to "➕ Add a new car", new_car_path, class: "user show btn btn-outline-primary" %></p>
+        <ul>
+        <% @cars.each do |car| %>
+          <li>  <%= link_to car.model, car_path(car) %> - 
+            <%= car.price %>$/day - 
+            <%= link_to "🖊", edit_car_path(car)%> -
+            <%= link_to "🗑", user_path(current_user), method: :delete, id: "delete-link sweet-alert-demo" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
 
     <div class="col bg-light ml-2 pt-2 pb-2">
-      <h2>My cars</h2>
-      <div class="button-add">
-        <p><%= link_to "➕ Add a new car", new_car_path %></p>
-      </div>
-      <% @cars.each do |car| %>
-        <div class="grey-cards">
-         
-          <p>Car model: </br> <%= car.model %></p>
-          <p>Car price: </br><%= car.price %>$/day</p>
-          <p>Car capacity:</br><%= car.capacity %> people</p>
-          <%= link_to "See the car", car_path(car)%>
-          <%= link_to "Update the car", edit_car_path(car) %>
-          <div class="button-destroy">
-            <button id="sweet-alert-demo">🗑</button>
-            <%= link_to "", user_path(current_user), method: :delete, id: "delete-link", class: "hidden" %>
+      <h2>Cars rented</h2>
+        <% @rentals.each do |rental| %>
+          <div class="user-rents-cards">
+            <p>Renter : <%= rental.user.username %></p>
+            <p>Car model: <%= rental.car.model %></p>
+            <p>Number of days : <%= ((rental.end_date - rental.start_date)/86400).to_i %> Days</p>
+            <p> Start date: <%= rental.start_date.strftime('%Y-%m-%d') %></p>
+            <p>End date: <%= rental.end_date.strftime('%Y-%m-%d') %> </p>
+            <p>Rental price: <%= (rental.car.price * (rental.end_date - rental.start_date)/86400).to_i %> €</p>
+            <div class="button-destroy">
+              <button id="sweet-alert-demo">🗑</button>
+              <%= link_to "", user_path(current_user), method: :delete, id: "delete-link", class: "hidden" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
     </div>
 
       <div class="col bg-light ml-2 pt-2 pb-2">
         <% counter = 0 %>
         <h2>Reservation:</h2>
+        <%#= link_to "➕ Book a car", root_path, class: "user show btn btn-outline-primary" %>
         <p><% @rentals.each do |rental| %></p>
-          <div class="grey-cards">
+          <div class="user-reservation-cards">
             <% counter += 1 %>
             <p>Booking number: <%= counter %></p>
-            <p> Start date: </br> <%= rental.start_date %></p>
-            <p>End date: </br><%= rental.end_date %> </p>
-            <p>Car model: </br><%= rental.car.model %></p>
+            <p> Start date: <%= rental.start_date.strftime('%Y-%m-%d') %></p>
+            <p>End date: <%= rental.end_date.strftime('%Y-%m-%d') %> </p>
+            <p>Car model: <%= rental.car.model %></p>
             <div class="button-destroy">
               <button id="sweet-alert-demo2">🗑</button>
               <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>
             </div>
           </div>
         <% end %>
-        <div class="button-add">
-          <%= link_to "➕ Book a car", root_path %>
-        </div>
+
       </div>
   </div>
 </div>
