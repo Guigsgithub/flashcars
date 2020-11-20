@@ -3,11 +3,17 @@
     <div class="index-cards flex-grow-1">
       <% @cars.each do  |car| %>
           <div class="index-card">
+            <h6 class="d-flex justify-content-center"><strong><%= car[0].model %></strong></h6>
               <% if car[0].photo.attached? %>
                 <%= cl_image_tag car[0].photo.key, crop: :fill, class:"index-img"%>
               <% else %>
                 <img src="https://i.pinimg.com/originals/b3/b0/0d/b3b00d8a4250d30936c290faa10c5f36.jpg" alt="Car picture" class="index-img">
               <% end %>
+              <div class="pb-2">
+                <%= car[1] if car[1] != "" %>
+                <h4 cless="d-flex justify-content-center pt-1 pb-1">💸 <strong><%= car[0].price %> €/day</strong></h4>
+                <h5 class="pt-2">👨‍👩‍👦‍👦 <%= car[0].capacity %> person(s)</h5>
+                <h6 class="car-location">🗺️ <%= car[0].location %></h6>
               <div>
                 <%= "Warning : Some dates are not available" if car[1] == 0 %>
                 <h4>💸 <%= car[0].price %> €/day</h4>
@@ -26,3 +32,6 @@
     </div>
   </div>
 </div>
+
+
+    
