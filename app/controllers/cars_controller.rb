@@ -7,38 +7,37 @@ class CarsController < ApplicationController
       @cars = @cars.select do |car|
         car.capacity.to_i >= params[:query_capacity].to_i && car.location.downcase == params[:query_location].downcase
       end
-      if @cars != []
-        @rentals = @rentals.select do |rental|
-          rental.car.capacity.to_i >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
-        end
-        start_date = params[:query_start_date]
-        end_date = params[:query_end_date]
-        if @rentals.nil? == false
-          @rentals = @rentals.each do |rental|
-            r_start_date = rental.start_date.strftime('%Y-%m-%d')
-            r_end_date = rental.end_date.strftime('%Y-%m-%d')
-            if start_date > r_start_date
-              if end_date > r_end_date
-                @availabilities.push([rental.car_id, 0])
-              else
-                @availabilities.push([rental.car_id, 1])
-              end
+      @rentals = @rentals.select do |rental|
+        rental.car.capacity.to_i >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
+      end
+      start_date = params[:query_start_date]
+      end_date = params[:query_end_date]
+      if @rentals.nil? == false
+        @rentals = @rentals.each do |rental|
+          r_start_date = rental.start_date.strftime('%Y-%m-%d')
+          r_end_date = rental.end_date.strftime('%Y-%m-%d')
+          if start_date > r_start_date
+            if end_date > r_end_date
+              @availabilities.push([rental.car_id, 0])
             else
-              if end_date < r_end_date
-                @availabilities.push([rental.car_id, -1])
-              else
-                @availabilities.push([rental.car_id, 0])
-              end
+              @availabilities.push([rental.car_id, 1])
+            end
+          else
+            if end_date < r_end_date
+              @availabilities.push([rental.car_id, -1])
+            else
+              @availabilities.push([rental.car_id, 0])
             end
           end
-          @cars = @availabilities.uniq
-          @cars = @cars.map { |car| [Car.find(car[0]), car[1]] }
-          @cars = @cars.select { |car| car[1] != 1 }
-        else
-          @cars = Car.all
-          @cars = @cars.map { |car| [car, ""] }
         end
+        @cars = @availabilities.uniq
+        @cars = @cars.map { |car| [Car.find(car[0]), car[1]] }
+        @cars = @cars.select {|car| car[1] != 1}
       else
+        @cars = Car.all
+        @cars = @cars.map { |car| [car, ""] }
+      end
+      if @cars == []
         @cars = Car.all
         @cars = @cars.map { |car| [car, "No available cars"] }
       end
