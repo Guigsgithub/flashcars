@@ -33,10 +33,27 @@
 .grey-cards {
   position: relative;
   background-color: #EFEFEF;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.user-rents-cards {
+  position: relative;
+  background-color: #EFEFEF;
   border-radius: 2px;
   padding: 10px;
   margin-bottom: 5px;
 }
+
+.user-reservation-cards {
+  position: relative;
+  background-color: #EFEFEF;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
 
 .button-destroy {
   position: absolute;
