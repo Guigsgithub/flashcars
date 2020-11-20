@@ -5,10 +5,10 @@ class CarsController < ApplicationController
     @availabilities = []
     if params[:query_capacity] != "" && params[:query_capacity] || params[:query_location] != "" && params[:query_location] || params[:query_start_date] != "" && params[:query_start_date] || params[:query_end_date] != "" && params[:query_end_date]
       @cars = @cars.select do |car|
-        car.capacity >= params[:query_capacity].to_i && car.location.downcase == params[:query_location].downcase
+        car.capacity.to_i >= params[:query_capacity].to_i && car.location.downcase == params[:query_location].downcase
       end
       @rentals = @rentals.select do |rental|
-        rental.car.capacity >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
+        rental.car.capacity.to_i >= params[:query_capacity].to_i && rental.car.location.downcase == params[:query_location].downcase
       end
       start_date = params[:query_start_date]
       end_date = params[:query_end_date]
