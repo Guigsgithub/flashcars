@@ -9,16 +9,19 @@
     <div class="col bg-light ml-2 pt-2 pb-2">
       <h2>My cars</h2>
       <div class="button-add">
-        <%= link_to "➕ Add a new car", new_car_path %>
+        <p><%= link_to "➕ Add a new car", new_car_path %></p>
       </div>
       <% @cars.each do |car| %>
         <div class="grey-cards">
+         
           <p>Car model: </br> <%= car.model %></p>
           <p>Car price: </br><%= car.price %>$/day</p>
           <p>Car capacity:</br><%= car.capacity %> people</p>
+          <%= link_to "See the car", car_path(car)%>
+          <%= link_to "Update the car", edit_car_path(car) %>
           <div class="button-destroy">
             <button id="sweet-alert-demo">🗑</button>
-            <%= link_to "", car_path(car), method: :delete, id: "delete-link", class: "hidden" %>
+            <%= link_to "", user_path(current_user), method: :delete, id: "delete-link", class: "hidden" %>
           </div>
         </div>
       <% end %>
@@ -27,7 +30,7 @@
       <div class="col bg-light ml-2 pt-2 pb-2">
         <% counter = 0 %>
         <h2>Reservation:</h2>
-        <% @rentals.each do |rental| %>
+        <p><% @rentals.each do |rental| %></p>
           <div class="grey-cards">
             <% counter += 1 %>
             <p>Booking number: <%= counter %></p>
@@ -36,7 +39,7 @@
             <p>Car model: </br><%= rental.car.model %></p>
             <div class="button-destroy">
               <button id="sweet-alert-demo2">🗑</button>
-              <%= link_to "", rental_path(rental), method: :delete, id: "delete-link2", class: "hidden"%>
+              <%= link_to "", user_path(current_user), method: :delete, id: "delete-link2", class: "hidden"%>
             </div>
           </div>
         <% end %>

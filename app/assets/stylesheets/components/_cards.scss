@@ -63,8 +63,17 @@
   margin: 12px;
   background-color: white;
   padding: 12px;
+  height: 380px;
   width: 250px;
   border-radius: 10px;
+    .btn {
+      margin: 0;
+      position: relative;
+      bottom: 0;
+      align-self: flex-end;
+    }
+  
+
 
   p {
     margin: 2px;
@@ -78,6 +87,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding: 5px;
 }
 
 .index-cards {
@@ -88,4 +98,6 @@
   padding: 10px;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 }
+

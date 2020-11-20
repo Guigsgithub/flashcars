@@ -6,6 +6,7 @@
 
 .mapboxgl-popup {
   max-width: 200px;
+  bottom: 0;
 }
 
 .mapboxgl-popup-content {
@@ -18,5 +19,6 @@
 }
 
 #map {
-  margin-top: 52px;
+  position: sticky;
+  top: 0;
 }
